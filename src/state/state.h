@@ -23,15 +23,8 @@
  * Each octet in the State structure represents a part of the state. The structure is used
  * to encapsulate the state information in a compact form, with each octet potentially
  * representing different aspects or data points of the state.
- *
- *  @var unsigned char first_octet
- *  Member 'first_octet' is the first octet of the state, representing [describe usage].
- *
- *  @var unsigned char second_octet
- *  Member 'second_octet' is the second octet of the state, representing [describe usage].
- *
- *  @var unsigned char third_octet
- *  Member 'third_octet' is the third octet of the state, representing [describe usage].
+ * @note The State structure is not meant to be used as a generic data structure. It is specifically
+ * designed to represent the state of the search algorithms.
  */
 typedef struct s_state {
     unsigned char first_octet;
