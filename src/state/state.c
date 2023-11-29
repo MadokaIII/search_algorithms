@@ -30,3 +30,8 @@ void print_state_as_binary(State state) {
     }
     printf("\n");
 }
+
+void state_to_array(State state, unsigned *array) {
+    unsigned code = state.octet[0] << 16 | state.octet[1] << 8 | state.octet[2];
+    printf("code: %d\n", code);
+}

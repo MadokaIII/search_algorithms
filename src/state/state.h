@@ -14,7 +14,7 @@
 /**
  * Defines the size of the State structure.
  */
-#define STATE_SIZE sizeof(State)
+#define STATE_SIZE 3
 
 /**
  * @struct State
@@ -27,9 +27,7 @@
  * designed to represent the state of the search algorithms.
  */
 typedef struct s_state {
-    unsigned char first_octet;
-    unsigned char second_octet;
-    unsigned char third_octet;
+    unsigned char octet[STATE_SIZE];
 } State;
 
 /*-----------------------------------------------------------------*/
@@ -79,5 +77,7 @@ void print_char_as_binary(unsigned char octet);
  * @post The binary representation of the state is printed to stdout, followed by a newline.
  */
 void print_state_as_binary(State state);
+
+void state_to_array(State state, unsigned *array);
 
 #endif // STATE_H
