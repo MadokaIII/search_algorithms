@@ -1,8 +1,10 @@
-# Set the source directory
-set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+cmake_minimum_required(VERSION 3.20)
 
-# Collect all source files
-file(GLOB SRC "*.c")
-file(GLOB HEADERS "*.h")
+# Add the executable SearchAlgorithms
+add_executable(SearchAlgorithms main.c)
 
-add_executable(SearchAlgorithms ${SRC} ${HEADERS})
+# Add subdirectories
+add_subdirectory(state)
+
+# main depends on state
+target_link_libraries(SearchAlgorithms PRIVATE state)
