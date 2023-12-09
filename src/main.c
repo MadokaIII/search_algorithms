@@ -1,9 +1,9 @@
 #include <state.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 int main(void) {
     State state;
     init_state(&state);
-    state_to_array(state, NULL);
+    printf("%d\n", state[0][0]);
     return 0;
 }

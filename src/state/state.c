@@ -14,24 +14,5 @@
 /*-----------------------------------------------------------------*/
 
 void init_state(State *state) {
-    assert(state != NULL);
-    memset(state, 0, STATE_SIZE);
-}
-
-void print_char_as_binary(unsigned char octet) {
-    for (int i = 7; i >= 0; i--) {
-        putchar((octet & (1 << i)) ? '1' : '0');
-    }
-}
-
-void print_state_as_binary(State state) {
-    for (unsigned long i = 0; i < STATE_SIZE; i++) {
-        print_char_as_binary(((unsigned char *)&state)[i]);
-    }
-    printf("\n");
-}
-
-void state_to_array(State state, unsigned *array) {
-    unsigned code = state.octet[0] << 16 | state.octet[1] << 8 | state.octet[2];
-    printf("code: %d\n", code);
+    memset(state, 0, sizeof(State));
 }
