@@ -34,15 +34,15 @@ void push_state(States *states, State *state) {
     states->size++;
 }
 
-State pop_state(States *states) {
+State *pop_state(States *states) {
     assert(states->size > 0);
     states->size--;
-    return states->stack[states->size];
+    return &states->stack[states->size];
 }
 
-State top_state(States *states) {
+State *top_state(States *states) {
     assert(states->size > 0);
-    return states->stack[states->size - 1];
+    return &states->stack[states->size - 1];
 }
 
 bool is_state_in_states(States states, State state) {
@@ -139,12 +139,18 @@ Movement *possible_movements(State state, int *nb_movement) {
     return movements;
 }
 
-State *possible_states(State state, int *nb_states) {
-    Movement *movements = possible_movements(state, nb_states);
-    State *states = calloc(*nb_states, sizeof(State));
-    for (int i = 0; i < *nb_states; i++) {
-        states[i] = copy_state(&state);
-        apply_movement_to_state(&states[i], movements[i]);
+States possible_states(State state) {
+    int nb_states;
+    Movement *movements = possible_movements(state, &nb_states);
+    States states;
+    init_states(&states);
+    for (int i = 0; i < nb_states; i++) {
+        push_state(&states, &state);
+        apply_movement_to_state(&states.stack[i], movements[i]);
+        states.stack[i].predecessor = malloc(sizeof(State));
+        if (states.stack[i].predecessor != NULL) {
+            *(states.stack[i].predecessor) = copy_state(&state);
+        }
     }
     free(movements);
     return states;

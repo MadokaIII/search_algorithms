@@ -14,7 +14,7 @@ add_compile_options(-std=c18 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Werror -Wf
 
 # Add compiler flags for sanitizers in Debug mode
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer")
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -g -O0")
   set(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fsanitize=address -fsanitize=undefined")
 endif()
 
@@ -22,3 +22,7 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(src)
+
+enable_testing()
+
+add_test(NAME test_search COMMAND SearchAlgorithms 10 1 1)
