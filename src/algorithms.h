@@ -18,19 +18,22 @@
  *
  * @param current The current state.
  * @param path The path to the goal state.
+ * @param infos The number of seen states, created states and iterations.
  * @return True if the goal state is found, false otherwise.
  */
-bool depth_first_search(State *current, States *path);
+bool depth_first_search(State *current, States *path, int **infos);
 /**
  * Depth First Search algorithm with a maximum depth.
  *
  * @param current The current state.
  * @param path The path to the goal state.
  * @param depth_max The maximum depth to search.
+ * @param infos The number of seen states, created states and iterations.
  * @return True if the goal state is found within the maximum depth, false
  * otherwise.
  */
-bool depth_first_search_capped(State *current, States *path, int depth_max);
+bool depth_first_search_capped(State *current, States *path, int depth_max,
+                               int **infos);
 
 /**
  * Iterative Deepening algorithm.
@@ -39,7 +42,7 @@ bool depth_first_search_capped(State *current, States *path, int depth_max);
  * @param path The path to the goal state.
  * @return True if the goal state is found, false otherwise.
  */
-bool iterative_deepening(State *current, States *path);
+bool iterative_deepening(State *current, States *path, int **infos);
 
 /**
  * Calculate the number of misplaced cubes in the state.
@@ -75,12 +78,13 @@ double f(State state, int (*heuristic)(State), int step_cost);
  * @param threshold The threshold value for the heuristic function.
  * @param heuristic The heuristic function.
  * @param step_cost The cost of each step.
+ * @param infos The number of seen states, created states and iterations.
  * @return The minimum cost exceeding the threshold.
  */
 double depth_first_search_capped_heuristic(State *current, States *path,
                                            double threshold,
                                            int (*heuristic)(State),
-                                           int step_cost);
+                                           int step_cost, int **infos);
 /**
  * Iterative Deepening algorithm with a heuristic function.
  *
@@ -88,9 +92,11 @@ double depth_first_search_capped_heuristic(State *current, States *path,
  * @param path The path to the goal state.
  * @param heuristic The heuristic function.
  * @param step_cost The cost of each step.
+ * @param infos The number of seen states, created states and iterations.
  * @return True if the goal state is found, false otherwise.
  */
 bool iterative_deepening_with_heuristic(State *current, States *path,
-                                        int (*heuristic)(State), int step_cost);
+                                        int (*heuristic)(State), int step_cost,
+                                        int **infos);
 
 #endif // ALGORITHMS_H
